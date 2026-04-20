@@ -18,6 +18,6 @@ app.put('/api/admin/shipments/:id/status',adm,(req,res)=>{const{status,location,
 app.delete('/api/admin/shipments/:id',adm,(req,res)=>{db.prepare('DELETE FROM tracking_events WHERE shipment_id=?').run(req.params.id);db.prepare('DELETE FROM shipments WHERE id=?').run(req.params.id);res.json({success:true});});
 app.get('/api/admin/contacts',adm,(req,res)=>{const c=db.prepare('SELECT * FROM contacts ORDER BY created_at DESC').all();db.prepare('UPDATE contacts SET read=1').run();res.json(c);});
 app.get('/api/admin/users',adm,(req,res)=>res.json(db.prepare('SELECT id,name,email,phone,role,created_at FROM users ORDER BY created_at DESC').all()));
-app.get('*',(req,res)=>res.sendFile(__dirname+'/Index.html'));
+app.get('*',(req,res)=>res.sendFile(__dirname+'/Public/Index.html'));
 app.listen(PORT,()=>console.log('Fast Express on port '+PORT));
 
