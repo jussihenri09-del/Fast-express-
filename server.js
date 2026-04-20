@@ -19,4 +19,5 @@ app.delete('/api/admin/shipments/:id',adm,(req,res)=>{db.prepare('DELETE FROM tr
 app.get('/api/admin/contacts',adm,(req,res)=>{const c=db.prepare('SELECT * FROM contacts ORDER BY created_at DESC').all();db.prepare('UPDATE contacts SET read=1').run();res.json(c);});
 app.get('/api/admin/users',adm,(req,res)=>res.json(db.prepare('SELECT id,name,email,phone,role,created_at FROM users ORDER BY created_at DESC').all()));
 app.get('*',(req,res)=>res.sendFile(__dirname+'/Index.html'));
-listen(PORT,()=>console.log('Fast Express on port '+PORT));
+app.listen(PORT,()=>console.log('Fast Express on port '+PORT));
+
